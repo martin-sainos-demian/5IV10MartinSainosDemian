@@ -109,7 +109,7 @@ $(document).ready(function(){
             }
 
             //imprimir el resultado
-            document.getElementById('mensaje').value=newMess;
+            document.getElementById('rs').value=newMess;
       }else{
         alert("no se puede no hay tortillas");
       }

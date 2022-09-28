@@ -12,6 +12,13 @@ var cesar=cesar || (function(){
         /*necesitamos una funcion que pueda obtener la posicion que va a venir
          por parte de la clave privada o desplazamiento*/
         
+        while(desp>=abc.length){
+            desp-=abc.length;
+        }
+        while(desp<0){
+            desp+=abc.length;
+        }
+
         return function(c){
             //necesitamos saber la posicion
             var i=abc.indexOf(c.toLowerCase());
@@ -21,18 +28,20 @@ var cesar=cesar || (function(){
             
              if(i!=-1){
                 //primero obtenemos la posicion para el desplazamiento
-                var pos=i;
+                var pos=parseInt(i);
                 //necesito saber la operacion a realizar: c o d
                 if(action){
                     //cifrar hacia adelante
-                    pos+=desp;
-                    //definir como se va a mover
-                    pos -=(pos>=l)?1:0;
+                    pos=parseInt(desp)+pos;
                 }else{
                     //descifrar para atras
-                    pos-=desp;
-                    //movimiento
-                    pos+=(pos<0)?1:0;
+                    pos=parseInt(desp)-pos;
+                }
+                while(pos>=abc.length){
+                    pos-=abc.length;
+                }
+                while(pos<0){
+                    pos+=abc.length;
                 }
                 return abc[pos];
              }
@@ -64,17 +73,9 @@ var cesar=cesar || (function(){
 })();
 $(document).ready(function(){
     $('#ce').click(function cifrar(){
-    if(!isNaN(document.getElementById("cant").value)){
-        document.getElementById("cadena").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
-    }else{
-        document.getElementById("error").innerHTML = "no es un numero";
-    }
+    document.getElementById("rs").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
 });
 $('#cd').click(function descifrar(){
-    if(!isNaN(document.getElementById("cant").value)){
-        document.getElementById("cadena").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
-    }else{
-        document.getElementById("error").innerHTML = "no es un numero";
-    }
+    document.getElementById("rs").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
 });
 })
