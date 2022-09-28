@@ -163,4 +163,5 @@ function revision(mess, key){
         alert("la llave no puede ser mayor que el mensaje");
         aceptado=false;
     }
+    return aceptado;
 }
