@@ -73,9 +73,17 @@ var cesar=cesar || (function(){
 })();
 $(document).ready(function(){
     $('#ce').click(function cifrar(){
-    document.getElementById("rs").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
+        if((!isNaN(document.getElementById("cant").value))){
+            document.getElementById("rs").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
+        }else{
+            document.getElementById("error").innerHTML = "no es un numero";
+        }
 });
 $('#cd').click(function descifrar(){
-    document.getElementById("rs").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
+    if(!isNaN(document.getElementById("cant").value)){
+        document.getElementById("rs").innerHTML = cesar.decode(document.getElementById("mensaje").value,document.getElementById("cant").value);
+    }else{
+        document.getElementById("error").innerHTML = "no es un numero";
+    }
 });
 })

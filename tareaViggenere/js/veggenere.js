@@ -151,16 +151,16 @@ function revision(mess, key){
 
     //evaluar la expresion
     if(!expresion.test(mess)){
-        alert("el texto que ingresó no ha sido aceptado, ingrese solo minusculas y evite números y simbolos");
+        document.getElementById("error").innerHTML = "el texto que ingresó no ha sido aceptado, ingrese solo minusculas y evite números y simbolos";
         aceptado=false;
     }
     //evaluar la expresion
     if(!expresion.test(key)){
-        alert("la clave ingresada es incorrecta, no cumple con las normas de solo minusculas y no de usar numero y/o simbolos");
+        document.getElementById("error").innerHTML = "la clave ingresada es incorrecta, no cumple con las normas de solo minusculas y no de usar numero y/o simbolos";
         aceptado=false;
     }
     if(key.length>mess.length){
-        alert("la llave no puede ser mayor que el mensaje");
+        document.getElementById("error").innerHTML = "la llave no puede ser mayor que el mensaje";
         aceptado=false;
     }
 
