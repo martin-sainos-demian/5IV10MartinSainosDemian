@@ -65,14 +65,14 @@ var cesar=cesar || (function(){
 $(document).ready(function(){
     $('#ce').click(function cifrar(){
     if(!isNaN(document.getElementById("cant").value)){
-        document.getElementById("resultado").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
+        document.getElementById("cadena").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
     }else{
         document.getElementById("error").innerHTML = "no es un numero";
     }
 });
 $('#cd').click(function descifrar(){
     if(!isNaN(document.getElementById("cant").value)){
-        document.getElementById("resultado").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
+        document.getElementById("cadena").innerHTML = cesar.encode(document.getElementById("mensaje").value,document.getElementById("cant").value);
     }else{
         document.getElementById("error").innerHTML = "no es un numero";
     }
