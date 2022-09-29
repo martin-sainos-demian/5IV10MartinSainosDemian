@@ -1,4 +1,15 @@
-
 button{
     background-color: '#0effff';
+}
+body{
+    text-align: center;
+    color:#700090;
+    background-color: #e000f0;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+textarea{
+    background-color: #efa0f5;
+}
+input{
+    background-color: #f5d0ff;
 }
