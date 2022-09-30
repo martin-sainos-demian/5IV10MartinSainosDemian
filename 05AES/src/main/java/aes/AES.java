@@ -68,17 +68,17 @@ public class AES {
 
         //vamos a obtener el mensaje y hay que decodificarlo en bytes
         byte[] decodificadosValores = new BASE64Decoder().decodeBuffer(valoresEncriptados);
+        
+        byte[] decValores = cifrado.doFinal(decodificadosValores);
 
         //tenemos un problema el cual es el formato para poder leerlo
         //tenemos que aplicar un formato BASE64
-        System.out.println("Valores sin formato: " + encValores);
+        System.out.println("Valores sin formato: " + decValores);
+        
+        //aplico un formato de cadena
+        String valoresDecifrados = new String(decValores);
 
-        //aplicamos formato
-        String valoresEncriptados = new BASE64Encoder().encode(encValores);
-
-        System.out.println("Valores con formato: " + valoresEncriptados);
-
-        return valoresEncriptados;
+        return valoresDecifrados;
     }
 
     private static Key generarLlave() {
