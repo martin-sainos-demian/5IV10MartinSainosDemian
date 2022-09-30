@@ -81,7 +81,11 @@ public class AES {
         return valoresDecifrados;
     }
 
-    private static Key generarLlave() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static Key generarLlave() throws Exception{
+        //vamos a ocupar las llaves de AES de acuerdo a la clase SecretKeySpec,
+        // esta nos genera todas las subllaves de ronda
+        
+        Key llave = new SecretKeySpec(keyvalue, instancia);
+        return llave;
     }
 }
