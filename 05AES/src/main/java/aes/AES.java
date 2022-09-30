@@ -69,6 +69,7 @@ public class AES {
         //vamos a obtener el mensaje y hay que decodificarlo en bytes
         byte[] decodificadosValores = new BASE64Decoder().decodeBuffer(valoresEncriptados);
         
+        //aqui hay que transformarlos
         byte[] decValores = cifrado.doFinal(decodificadosValores);
 
         //tenemos un problema el cual es el formato para poder leerlo
