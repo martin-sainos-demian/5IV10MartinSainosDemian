@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package des;
+package paquete;
 
 /**
  *
@@ -29,8 +29,13 @@ import java.io.*;
 public class DES {
     
     public static void main(String[] args)throws Exception{
+        String folder="res/";
+        String path="patito";
+        String ci=".ci";
+        String de=".de";
+        String format=".txt";
         //vamos a comprobar la entrada de un archivo o fichero para cifrar
-        if(args.length!=1){
+        if(path.length()==0){
             //no hay archivos cargados
             mensajeAyuda();
             System.exit(1);
@@ -71,7 +76,7 @@ public class DES {
             RELLENO PKCS5
             */
             
-            System.out.println("2.- Cifrar con DES y el archivo: "+args[0]+"dejar el resultado en: "+args[0]+".cifrado");
+            System.out.println("2.- Cifrar con DES y el archivo: "+path+format+", dejar el resultado en: "+path+ci+format);
             
             //instancia
             Cipher cifrado=Cipher.getInstance("DES/ECB/PKCS5Padding");
@@ -85,8 +90,10 @@ public class DES {
             
             //generamos los archivos
             
-            FileInputStream in= new FileInputStream(args[0]);
-            FileOutputStream out= new FileOutputStream(args[0]);
+            FileInputStream in= new FileInputStream(folder+path+format);
+            File yourFile = new File(folder+path+ci+format);
+            yourFile.createNewFile();
+            FileOutputStream out= new FileOutputStream(folder+path+ci+format);
             
             //lectura
             int bytesleidos=in.read(buffer,0,1000);
@@ -107,7 +114,7 @@ public class DES {
             out.close();
             
             //vamos a descifrar
-            System.out.println("3.- Descifrar con DES el archivo:"+args[0]+".cifrado" + " , vamos a ver el resultado en el archivo: " + args[0] +".descifrado");
+            System.out.println("3.- Descifrar con DES el archivo:"+path+ci+format+ " , vamos a ver el resultado en el archivo: " +path+de+format);
             
             //empezamos con el modo de descifrar
             
@@ -116,9 +123,12 @@ public class DES {
             //Buffer para la entrada y salida de los bits correspondientes
             
             byte[] bufferPlano;
-            
-            in = new FileInputStream(args[0]+".cifrado");
-            out = new FileOutputStream(args[0]+".descifrado");
+            yourFile = new File(folder+path+ci+format);
+            yourFile.createNewFile();
+            in = new FileInputStream(folder+path+ci+format);
+            yourFile = new File(folder+path+de+format);
+            yourFile.createNewFile();
+            out = new FileOutputStream(folder+path+de+format);
             
             //Damos lectura de cada elemento
             
