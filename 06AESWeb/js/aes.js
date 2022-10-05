@@ -1,5 +1,5 @@
 var mensaje="Habia una vez un patito que decia miau miau que queria mimir todo el dia, pero no lo dejaban y encontes chillaba y por eso tronaba gente wiiii";
-var password="i forgor :skull:";
+var password="i forgor";
 
 //ahora vamos a cifrar
 var cifrado=CryptoJS.AES.encrypt(mensaje,password);
