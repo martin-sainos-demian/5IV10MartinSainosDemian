@@ -64,6 +64,28 @@ public class Main {
         mostrarBytes(bufferdescifrado);
         
         System.out.println("");
+        
+        //vamos a voltearlo
+        
+        cifrado.init(Cipher.ENCRYPT_MODE, clavePrivada);
+        System.out.println("5 ciframos con la privada");
+        buffercifrado = cifrado.doFinal(bufferplano);
+        
+        System.out.println("texto cipher");
+        mostrarBytes(buffercifrado);
+        
+        System.out.println("");
+        
+        cifrado.init(Cipher.DECRYPT_MODE, clavePublica);
+        
+        System.out.println("6 descifrmos con publica: ");
+        
+        bufferdescifrado = cifrado.doFinal(buffercifrado);
+        
+        System.out.println("texto descipher");
+        mostrarBytes(bufferdescifrado);
+        
+        System.out.println("");
     }
 
     private static byte[] leerLinea(InputStream in) throws Exception{
