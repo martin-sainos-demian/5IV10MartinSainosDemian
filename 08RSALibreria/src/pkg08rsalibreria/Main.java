@@ -36,16 +36,59 @@ public class Main {
         System.out.println("2 introducir el txt plano que desea cifrar max 64 chars");
         
         //almacenar el txt en un array de bytes
-        byte[] bufferplano = leerLinea(System.inheritedChannel());
+        byte[] bufferplano = leerLinea(System.in);
         
         //ciframos
         Cipher cifrado = Cipher.getInstance("RSA", "BC");
         
         //ciframos con publica
         cifrado.init(Cipher.ENCRYPT_MODE, clavePublica);
+        
+        System.out.println("3 ciframos con clave public: ");
+        
+        byte[] buffercifrado = cifrado.doFinal();
+        
+        System.out.println("txt cipher: ");
+        //no tiene format
+        mostrarBytes(buffercifrado);
+        System.out.println("");
+        
+        //desciframos con privada
+        cifrado.init(Cipher.DECRYPT_MODE, clavePrivada);
+        
+        System.out.println("4 descipher con clave priv");
+        
+        byte[] bufferdescifrado = cifrado.doFinal(buffercifrado);
+        
+        System.out.println("texto descifrado: ");
+        mostrarBytes(bufferdescifrado);
+        
+        System.out.println("");
     }
 
-    private static byte[] leerLinea(Channel inheritedChannel) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private static byte[] leerLinea(InputStream in) throws Exception{
+        //definir como leer
+        byte[] buffer1 = new byte[1000];
+        int i = 0;
+        byte c;
+        
+        c = (byte)in.read();
+        
+        while((c != '\n')&&(i<1000)){
+            buffer1[i] = c;
+            c = (byte)in.read();
+            i++;
+        }
+        
+        byte[] buffer2 = new byte[i];
+        for(int j = 0; j < i; j++){
+            buffer2[j] = buffer1[j];
+        }
+        
+        return buffer2;
+    }
+
+    private static void mostrarBytes(byte[] buffer) {
+        System.out.write(buffer, 0, buffer.length);
     }
 }
