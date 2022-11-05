@@ -46,7 +46,7 @@ public class Main {
         
         System.out.println("3 ciframos con clave public: ");
         
-        byte[] buffercifrado = cifrado.doFinal();
+        byte[] buffercifrado = cifrado.doFinal(bufferplano);
         
         System.out.println("txt cipher: ");
         //no tiene format
