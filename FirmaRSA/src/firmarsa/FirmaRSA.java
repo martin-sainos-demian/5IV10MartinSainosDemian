@@ -4,6 +4,9 @@ package firmarsa;
 import javax.crypto.*;
 import java.security.*;
 
+//libreria para formatos de la firma
+import sun.misc.BASE64Encoder;
+
 public class FirmaRSA {
     
     public static void main(String[] args) throws Exception{
@@ -24,8 +27,27 @@ public class FirmaRSA {
         
         //preparamos la firma
         
-        Signature firma = Signature.getInstance("MD%WithRSA");
+        Signature firma = Signature.getInstance("MD5WithRSA");
+        
+        //inicializo la llave privada
+        firma.initSign(llaves.getPrivate());
+        
+        //actualizamos el documento
+        firma.update(dato);
+        
+        //ahora firmamos el documento
+        byte[] firmadocumento = firma.sign();
+        System.out.println("la firma digital es: "+new BASE64Encoder().encode(firmadocumento));
                 
+        //proceso de verificacion de la firma que deberia de ir en otro lugar pero meh
+        firma.initVerify(llaves.getPublic());
+        
+        //vamos a actualizar el edo del documento
+        firma.update(dato);
+        
+        //vamos a ver si está bien el doc
+        System.out.println("el documento es valido?");
+        System.out.println(firma.verify(firmadocumento));
     }
     
 }
